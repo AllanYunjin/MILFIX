@@ -9,8 +9,8 @@
         /* ---- CONEXÃO COM O BANCO (SUPABASE) ----
            Project URL e chave "anon/publishable" ficam em Project Settings > API do Supabase.
            NUNCA coloque a chave "service_role" aqui. */
-        const SUPABASE_URL = "COLE_AQUI_A_PROJECT_URL";      // ex: https://abcd1234.supabase.co
-        const SUPABASE_ANON_KEY = "COLE_AQUI_A_ANON_KEY";   // chave pública (anon / publishable)
+        const SUPABASE_URL = "db.numiebuzhsvrwxkfglue.supabase.co";      // ex: https://abcd1234.supabase.co
+        const SUPABASE_ANON_KEY = "sb_publishable_jG6eITl-fcOM5O3Al_Oatw_UzKxCayx";   // chave pública (anon / publishable)
         const db = (window.supabase && SUPABASE_URL.startsWith("https"))
             ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
