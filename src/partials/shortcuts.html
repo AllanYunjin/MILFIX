@@ -1,0 +1,55 @@
+<!-- ARQUIVO: src/partials/shortcuts.html | Atualizado em 15/11/2026 | Cards de atalho por departamento | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         7. CARDS DE ATALHO POR DEPARTAMENTO
+         Ficam sobrepostos na borda inferior do banner para acesso rápido no celular.
+    ========================================================================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <button onclick="selectCategoryFromNav('Fixadores')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Fixadores</span>
+                    <span class="text-[11px] text-slate-500">Parafusos e Porcas</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-compact-disc"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Abrasivos</span>
+                    <span class="text-[11px] text-slate-500">Discos e Lixas</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Solda')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Solda</span>
+                    <span class="text-[11px] text-slate-500">Eletrodos e MIG</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('EPIs')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">EPIs</span>
+                    <span class="text-[11px] text-slate-500">Proteção NR-06</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="col-span-2 sm:col-span-1 bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Ferramentas</span>
+                    <span class="text-[11px] text-slate-500">Chaves e Manutenção</span>
+                </div>
+            </button>
+        </div>
+    </section>
+

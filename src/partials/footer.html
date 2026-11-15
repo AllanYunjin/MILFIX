@@ -1,0 +1,95 @@
+<!-- ARQUIVO: src/partials/footer.html | Atualizado em 15/11/2026 | Rodapé institucional e contatos | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         10. RODAPÉ INSTITUCIONAL (FOOTER)
+         Contém informações da empresa, links de categorias, contatos e endereço.
+    ========================================================================== -->
+    <footer id="contato" class="bg-navy-950 text-slate-300 border-t-4 border-industrial-amber">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Coluna 1: Marca e Certificações -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-lg bg-industrial-amber flex items-center justify-center text-navy-950">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-extrabold text-white">MIL<span class="text-industrial-amber">FIX</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Distribuidora especializada em elementos de fixação, abrasivos, solda e equipamentos de proteção para indústrias, construtoras e metalúrgicas.
+                    </p>
+                    <div class="flex items-center gap-3 pt-1">
+                        <span class="px-2.5 py-1 bg-navy-900 border border-navy-800 rounded text-xs font-mono text-slate-300">ISO 9001</span>
+                        <span class="px-2.5 py-1 bg-navy-900 border border-navy-800 rounded text-xs font-mono text-slate-300">DIN / ASTM</span>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Atalhos dos Departamentos -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Departamentos</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><button onclick="selectCategoryFromNav('Fixadores')" class="hover:text-industrial-amber transition-colors">Fixadores &amp; Parafusos</button></li>
+                        <li><button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="hover:text-industrial-amber transition-colors">Discos e Abrasivos</button></li>
+                        <li><button onclick="selectCategoryFromNav('Solda')" class="hover:text-industrial-amber transition-colors">Consumíveis de Solda</button></li>
+                        <li><button onclick="selectCategoryFromNav('EPIs')" class="hover:text-industrial-amber transition-colors">EPIs e Segurança</button></li>
+                        <li><button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="hover:text-industrial-amber transition-colors">Ferramentas Manuais</button></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Canais de Atendimento (EDITE AQUI SEUS TELEFONES E E-MAIL) -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Atendimento Corporativo</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-phone text-industrial-amber mt-1"></i>
+                            <div>
+                                <span class="block text-white font-semibold">(11) 3456-7890</span>
+                                <span class="text-xs text-slate-400">Televendas e Engenharia</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mt-1 text-base"></i>
+                            <div>
+                                <span class="block text-white font-semibold">(11) 99876-5432</span>
+                                <span class="text-xs text-slate-400">Cotação Rápida via WhatsApp</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-regular fa-envelope text-industrial-amber mt-1"></i>
+                            <span>vendas@milfixindustrial.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Endereço e Mapa Esquemático (EDITE AQUI SEU ENDEREÇO) -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Centro de Distribuição</h4>
+                    <div class="bg-navy-900 border border-navy-800 rounded-xl p-3.5 space-y-2.5">
+                        <div class="h-24 rounded-lg bg-navy-800 relative overflow-hidden flex items-center justify-center border border-navy-700">
+                            <svg class="w-full h-full opacity-35" viewBox="0 0 200 100">
+                                <path d="M0 20 L200 80 M40 0 L120 100 M0 70 L200 30" stroke="#94A3B8" stroke-width="3" fill="none"/>
+                                <path d="M100 0 L100 100" stroke="#F59E0B" stroke-width="4" stroke-dasharray="6 4"/>
+                            </svg>
+                            <div class="relative z-10 bg-navy-950/90 px-3 py-1.5 rounded-full border border-industrial-amber flex items-center gap-1.5 text-xs font-bold text-white shadow">
+                                <i class="fa-solid fa-location-dot text-industrial-red"></i>
+                                <span>Distrito Industrial • SP</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Av. Industrial, 1450 - Galpão 04<br>
+                            Distrito Industrial • CEP 09080-500
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-navy-900 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2026 MILFIX Soluções Industriais Ltda. Todos os direitos reservados.</p>
+                <p>Valores e prazos sujeitos à análise de cotação B2B.</p>
+            </div>
+        </div>
+    </footer>
+

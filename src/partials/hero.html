@@ -1,0 +1,81 @@
+<!-- ARQUIVO: src/partials/hero.html | Atualizado em 15/11/2026 | Banner principal (hero) | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         6. BANNER PRINCIPAL (HERO SECTION)
+         Apresentação institucional da empresa, botões de ação e 4 diferenciais B2B.
+    ========================================================================== -->
+    <section class="relative bg-navy-900 text-white overflow-hidden border-b-4 border-industrial-amber">
+        <!-- Grade Hexagonal Decorativa ao Fundo (SVG leve que não pesa no celular) -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="hexGrid" width="56" height="100" patternUnits="userSpaceOnUse">
+                        <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hexGrid)"/>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Coluna da Esquerda: Título e Botões -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-navy-800/90 border border-navy-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-industrial-amber">
+                        <span class="w-2 h-2 rounded-full bg-industrial-amber animate-pulse"></span>
+                        <span>CATÁLOGO TÉCNICO B2B • ATENDIMENTO INDUSTRIAL</span>
+                    </div>
+                    <!-- EDITE AQUI: Título Principal do Banner -->
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Soluções em <span class="text-industrial-amber">Fixação, Abrasivos</span> e Metal Mecânica para a Indústria
+                    </h1>
+                    <!-- EDITE AQUI: Subtítulo descritivo -->
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Linha completa de parafusos certificados (DIN/ISO), discos de corte de alto rendimento, consumíveis de solda e EPIs com estoque estratégico e cotação ágil.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button onclick="scrollToCatalog()" class="w-full sm:w-auto bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-extrabold px-6 py-3.5 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <span>Explorar Catálogo</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button onclick="openQuoteDrawer()" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-700 border border-slate-600 text-white font-semibold px-6 py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                            <span>Cotação Rápida</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coluna da Direita: 4 Cards de Diferenciais Técnicos -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-industrial-amber/15 text-industrial-amber flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Normas DIN &amp; ASTM</h3>
+                        <p class="text-xs text-slate-300 mt-1">Rastreabilidade e lotes certificados para montagem estrutural.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-boxes-stacked text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">+15.000 SKUs</h3>
+                        <p class="text-xs text-slate-300 mt-1">Pronta entrega em fixadores inox, aço carbono e abrasivos.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sky-500/15 text-sky-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Faturamento B2B</h3>
+                        <p class="text-xs text-slate-300 mt-1">Condições especiais para compras corporativas e indústrias.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-industrial-red/20 text-rose-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-headset text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Suporte Técnico</h3>
+                        <p class="text-xs text-slate-300 mt-1">Especialistas para especificar a peça exata da sua operação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

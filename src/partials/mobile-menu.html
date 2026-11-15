@@ -1,0 +1,46 @@
+<!-- ARQUIVO: src/partials/mobile-menu.html | Atualizado em 15/11/2026 | Gaveta 1: menu lateral de categorias (celular) | Depois de editar, rode: node build.js -->
+    <!-- GAVETA 1: MENU LATERAL DE CATEGORIAS (CELULAR) -->
+    <div id="mobileMenuOverlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-navy-950/70 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+    <div id="mobileMenuDrawer" class="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-navy-900 text-white z-50 transform -translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-4 bg-navy-950 flex items-center justify-between border-b border-navy-800">
+            <span class="font-extrabold text-lg">MIL<span class="text-industrial-amber">FIX</span> • Menu</span>
+            <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        <div class="p-4 flex-1 overflow-y-auto space-y-2">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">Departamentos Industriais</p>
+            <button onclick="selectCategoryFromMobile('Todos')" class="w-full text-left px-3.5 py-3 rounded-lg bg-navy-800/70 hover:bg-navy-800 flex items-center gap-3 font-semibold text-sm">
+                <i class="fa-solid fa-grip text-industrial-amber w-5"></i>
+                <span>Todo o Catálogo</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Fixadores')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-bolt text-industrial-amber w-5"></i>
+                <span>Fixadores</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Abrasivos e Corte')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-compact-disc text-industrial-amber w-5"></i>
+                <span>Abrasivos e Corte</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Solda')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-fire-flame-curved text-industrial-amber w-5"></i>
+                <span>Solda</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('EPIs')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-helmet-safety text-industrial-amber w-5"></i>
+                <span>EPIs &amp; Segurança</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Ferramentas Manuais')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-wrench text-industrial-amber w-5"></i>
+                <span>Ferramentas Manuais</span>
+            </button>
+        </div>
+        <div class="p-4 border-t border-navy-800 bg-navy-950 text-xs text-slate-400 space-y-2">
+            <div class="flex items-center gap-2 text-white font-semibold">
+                <i class="fa-solid fa-phone text-industrial-amber"></i>
+                <span>(11) 3456-7890</span>
+            </div>
+            <p>Atendimento B2B: Seg. a Sex. 07:30–17:30</p>
+        </div>
+    </div>
+

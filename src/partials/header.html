@@ -1,0 +1,88 @@
+<!-- ARQUIVO: src/partials/header.html | Atualizado em 15/11/2026 | Cabeçalho fixo: logo, busca, botão de orçamento. O menu de departamentos (nav) é incluído aqui dentro | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         4. CABEÇALHO PRINCIPAL (HEADER FIXO NO TOPO)
+         Contém: Botão menu mobile, Logotipo, Barra de Pesquisa e Botão Orçamento.
+         A classe 'sticky top-0 z-40' faz ele acompanhar a rolagem da página.
+    ========================================================================== -->
+    <header class="bg-navy-900 text-white sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex items-center justify-between gap-3 md:gap-6">
+                
+                <!-- Bloco Esquerdo: Botão Hambúrguer (só no celular) + Logo da Empresa -->
+                <div class="flex items-center gap-3">
+                    <!-- 'lg:hidden' faz este botão aparecer APENAS em celulares e tablets -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Abrir menu de categorias" class="lg:hidden p-2.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-white transition-colors">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                    
+                    <!-- Logotipo Clicável (ao clicar, limpa filtros e volta ao início) -->
+                    <a href="#" onclick="resetAllFilters(event)" class="flex items-center gap-2.5 group">
+                        <!-- Ícone Hexagonal (Porca Sextavada) feito em SVG -->
+                        <div class="w-10 h-10 rounded-lg bg-industrial-amber flex items-center justify-center text-navy-950 shadow-md group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                            </svg>
+                        </div>
+                        <!-- EDITE AQUI: Nome e Slogan da sua empresa -->
+                        <div class="leading-none">
+                            <span class="text-2xl font-extrabold tracking-tight text-white">MIL<span class="text-industrial-amber">FIX</span></span>
+                            <span class="block text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-0.5">Fixação &amp; Industrial</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Bloco Central: Barra de Busca para Computador ('hidden md:flex') -->
+                <div class="hidden md:flex flex-1 max-w-2xl relative">
+                    <div class="relative w-full">
+                        <!-- oninput="handleSearch(this.value)" filtra os produtos a cada letra digitada -->
+                        <input 
+                            type="text" 
+                            id="desktopSearchInput"
+                            oninput="handleSearch(this.value)"
+                            placeholder="Busque por produto, bitola, norma DIN ou código SKU (ex: M10, Inox, Disco)..." 
+                            class="w-full bg-white text-slate-900 placeholder-slate-400 text-sm rounded-lg pl-4 pr-24 py-2.5 border-2 border-transparent focus:border-industrial-amber focus:outline-none shadow-inner"
+                        >
+                        <!-- Botão 'X' para limpar a busca rapidamente -->
+                        <button id="clearSearchDesktop" onclick="clearSearch()" class="hidden absolute right-12 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <!-- Botão Amarelo de Buscar (rola a tela até o catálogo) -->
+                        <button onclick="scrollToCatalog()" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-bold px-3.5 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bloco Direito: Botão da Lista de Orçamento com Contador -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openQuoteDrawer()" class="relative flex items-center gap-2.5 bg-navy-800 hover:bg-navy-700 border border-navy-700 px-3.5 py-2.5 rounded-lg transition-all group">
+                        <div class="relative">
+                            <i class="fa-solid fa-clipboard-list text-industrial-amber text-xl group-hover:scale-110 transition-transform"></i>
+                            <!-- Bolinha vermelha que mostra quantos itens estão no orçamento -->
+                            <span id="quoteBadge" class="absolute -top-2 -right-2.5 bg-industrial-red text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                        </div>
+                        <div class="hidden sm:block text-left leading-tight">
+                            <span class="block text-[11px] text-slate-300">Sua Cotação</span>
+                            <span class="text-xs font-bold text-white">Orçamento</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Busca Exclusiva para Celular ('md:hidden' esconde no computador) -->
+            <div class="mt-3 md:hidden relative">
+                <input 
+                    type="text" 
+                    id="mobileSearchInput"
+                    oninput="handleSearch(this.value)"
+                    placeholder="Buscar peça, bitola (M10), disco, EPI..." 
+                    class="w-full bg-white text-slate-900 placeholder-slate-400 text-sm rounded-lg pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-industrial-amber"
+                >
+                <i class="fa-solid fa-magnifying-glass text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+            </div>
+        </div>
+
+        <!--@include partials/nav.html-->
+    </header>

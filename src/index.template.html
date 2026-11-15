@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- ARQUIVO GERADO em 15/11/2026 por build.js. NÃO edite o index.html direto: edite src/index.template.html ou src/partials/*.html e rode "node build.js" -->
+    <!-- =========================================================================
+         1. CONFIGURAÇÕES DA PÁGINA (HEAD)
+         Aqui definimos codificação de acentos (UTF-8), adaptação para celular,
+         título da aba e carregamos as bibliotecas externas (Tailwind e Ícones).
+    ========================================================================== -->
+    <meta charset="UTF-8">
+    <!-- Essa tag abaixo é OBRIGATÓRIA para o site se adaptar perfeitamente ao celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título que aparece na aba do navegador (Edite aqui com o nome da sua empresa) -->
+    <title>MILFIX | Fixadores, Abrasivos e Soluções Industriais B2B</title>
+    
+    <!-- Framework Tailwind CSS: permite estilizar tudo direto nas classes HTML -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    
+    <!-- Fontes do Google: 'Inter' para textos gerais e 'JetBrains Mono' para códigos SKU -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Biblioteca Font Awesome: fornece ícones (telefone, lupa, carrinho, WhatsApp, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- =========================================================================
+         2. PALETA DE CORES PERSONALIZADA (TAILWIND CONFIG)
+         Se quiser mudar a cor principal do site inteiro (ex: trocar azul por verde
+         ou o amarelo por laranja), basta alterar os códigos hexadecimais (#) abaixo!
+    ========================================================================== -->
+    <!-- Arquivo com as cores/fontes: assets/js/tailwind-config.js (precisa vir DEPOIS do Tailwind acima) -->
+    <script src="assets/js/tailwind-config.js"></script>
+    <!-- SEU CSS PRÓPRIO (se precisar de algo que o Tailwind não faz): assets/css/custom.css -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-industrial-bg text-slate-800 font-sans antialiased selection:bg-industrial-amber selection:text-navy-900 overflow-x-hidden">
+
+    <!--@include partials/topbar.html-->
+    <!--@include partials/header.html-->
+    <!--@include partials/hero.html-->
+    <!--@include partials/shortcuts.html-->
+    <!--@include partials/catalog.html-->
+    <!--@include partials/articles.html-->
+    <!--@include partials/footer.html-->
+
+    <!-- =========================================================================
+         11. COMPONENTES FLUTUANTES, GAVETAS MOBILE E MODAIS (SOBREPOSIÇÕES)
+         Estes elementos ficam ocultos até que o usuário clique em algum botão.
+    ========================================================================== -->
+
+    <!--@include partials/floating-button.html-->
+    <!--@include partials/mobile-menu.html-->
+    <!--@include partials/filter-drawer.html-->
+    <!--@include partials/product-modal.html-->
+    <!--@include partials/quote-drawer.html-->
+    <!--@include partials/toast.html-->
+
+    <!-- =========================================================================
+         12. SCRIPTS DO SITE (CÉREBRO DO SITE) - agora em arquivos separados: assets/js/
+         A ORDEM IMPORTA: cada arquivo usa funções/variáveis dos anteriores. Não troque a ordem!
+    ========================================================================== -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/products-data.js"></script>
+    <script src="assets/js/state.js"></script>
+    <script src="assets/js/svg-icons.js"></script>
+    <script src="assets/js/filters.js"></script>
+    <script src="assets/js/product-cards.js"></script>
+    <script src="assets/js/product-modal.js"></script>
+    <script src="assets/js/quote.js"></script>
+    <script src="assets/js/ui-drawers.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

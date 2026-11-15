@@ -1,0 +1,89 @@
+<!-- ARQUIVO: src/partials/catalog.html | Atualizado em 15/11/2026 | Área do catálogo: filtros laterais, busca, ordenação e grade de produtos | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         8. ÁREA PRINCIPAL DO CATÁLOGO DE PRODUTOS
+         Contém: Barra lateral de filtros (Desktop), Botão Filtro (Mobile),
+         Chips de filtros selecionados e a Grade de Produtos (2 colunas no
+         celular, 3 no tablet e 4 no computador).
+    ========================================================================== -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Título da Seção + Botão Filtro Mobile + Caixa de Ordenação -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
+            <div>
+                <h2 class="text-2xl font-extrabold text-navy-900 flex items-center gap-2">
+                    <span class="w-2 h-7 bg-industrial-amber rounded-sm inline-block"></span>
+                    <span>Catálogo Técnico de Produtos</span>
+                </h2>
+                <!-- Texto atualizado via JS mostrando quantos produtos aparecem -->
+                <p id="resultsCounter" class="text-sm text-slate-500 mt-1">Exibindo 12 itens disponíveis para cotação</p>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <!-- Botão Abrir Gaveta de Filtros (Aparece apenas no Celular/Tablet) -->
+                <button onclick="toggleFilterDrawer(true)" class="lg:hidden flex-1 sm:flex-none bg-navy-900 hover:bg-navy-800 text-white font-semibold px-4 py-2.5 rounded-lg text-sm flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-sliders text-industrial-amber"></i>
+                    <span>Filtrar Produtos</span>
+                    <span id="mobileActiveFilterCount" class="hidden bg-industrial-amber text-navy-950 text-xs font-bold px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+
+                <!-- Seletor de Ordenação -->
+                <select id="sortSelect" onchange="applyFilters()" aria-label="Ordenar produtos" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:border-navy-900">
+                    <option value="featured">Destaques Técnicos</option>
+                    <option value="sku">Código SKU (A-Z)</option>
+                    <option value="name">Nome (A-Z)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Barra de Etiquetas (Chips) dos Filtros Ativos no Momento -->
+        <div id="activeFiltersBar" class="hidden flex-wrap items-center gap-2 mb-6">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Filtros ativos:</span>
+            <div id="activeFilterTags" class="flex flex-wrap gap-2"></div>
+            <button onclick="resetAllFilters()" class="text-xs font-bold text-industrial-red hover:underline ml-2">Limpar tudo</button>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 items-start">
+            
+            <!-- BARRA LATERAL DE FILTROS (APENAS COMPUTADOR - 'hidden lg:block') -->
+            <aside class="hidden lg:block w-64 shrink-0 bg-white rounded-xl border border-slate-200 shadow-sm p-5 sticky top-32">
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                    <h3 class="font-bold text-navy-900 flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-industrial-amber"></i>
+                        <span>Filtros Técnicos</span>
+                    </h3>
+                    <button onclick="resetAllFilters()" class="text-xs text-slate-400 hover:text-industrial-red font-medium transition-colors">Limpar</button>
+                </div>
+                
+                <!-- O JavaScript preenche este container automaticamente com base nos produtos -->
+                <div id="desktopFiltersContainer" class="space-y-6"></div>
+            </aside>
+
+            <!-- GRADE DE CARDS DE PRODUTOS -->
+            <div class="flex-1 w-full">
+                <!--
+                    EXPLICANDO AS COLUNAS RESPONSIVAS ABAIXO:
+                    - grid-cols-2: 2 produtos lado a lado no CELULAR
+                    - md:grid-cols-3: 3 produtos lado a lado no TABLET
+                    - xl:grid-cols-4: 4 produtos lado a lado no COMPUTADOR
+                -->
+                <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4">
+                    <!-- Os cards são criados dinamicamente pela função renderProductsGrid() -->
+                </div>
+
+                <!-- Mensagem exibida quando a busca ou filtro não encontra nenhum produto -->
+                <div id="emptyState" class="hidden bg-white rounded-xl border border-slate-200 p-10 text-center">
+                    <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900">Nenhum produto técnico encontrado</h3>
+                    <p class="text-sm text-slate-500 max-w-md mx-auto mt-1 mb-5">
+                        Não encontramos itens correspondentes aos filtros ou termo pesquisado. Tente limpar os filtros ou buscar por outro código.
+                    </p>
+                    <button onclick="resetAllFilters()" class="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors">
+                        Restaurar Catálogo Completo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+

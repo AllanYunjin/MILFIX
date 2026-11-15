@@ -1,0 +1,53 @@
+<!-- ARQUIVO: src/partials/nav.html | Atualizado em 15/11/2026 | Menu horizontal de departamentos (só no computador) | Depois de editar, rode: node build.js -->
+        <!-- =====================================================================
+             5. MENU HORIZONTAL DE DEPARTAMENTOS (APENAS COMPUTADOR - 'hidden lg:block')
+             Ao clicar em qualquer categoria, o catálogo filtra automaticamente.
+        ====================================================================== -->
+        <nav class="hidden lg:block bg-navy-800 border-t border-navy-700/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ul class="flex items-center space-x-1 text-sm font-medium">
+                    <li>
+                        <button onclick="selectCategoryFromNav('Todos')" class="nav-cat-btn px-4 py-2.5 text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-industrial-amber">
+                            <i class="fa-solid fa-grip text-industrial-amber"></i>
+                            <span>Todo o Catálogo</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Fixadores')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-bolt text-industrial-amber/80"></i>
+                            <span>Fixadores</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-compact-disc text-industrial-amber/80"></i>
+                            <span>Abrasivos e Corte</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Solda')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-fire-flame-curved text-industrial-amber/80"></i>
+                            <span>Solda</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('EPIs')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-helmet-safety text-industrial-amber/80"></i>
+                            <span>EPIs &amp; Segurança</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-wrench text-industrial-amber/80"></i>
+                            <span>Ferramentas Manuais</span>
+                        </button>
+                    </li>
+                    <li class="ml-auto">
+                        <a href="#artigos" class="px-3 py-2 text-xs font-semibold text-industrial-amber hover:underline flex items-center gap-1.5">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <span>Fique por Dentro</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>

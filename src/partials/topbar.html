@@ -1,0 +1,39 @@
+<!-- ARQUIVO: src/partials/topbar.html | Atualizado em 15/11/2026 | Barra escura do topo: telefone, horário e atalho de cotação | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         3. BARRA SUPERIOR DE CONTATO RÁPIDO (TOP BAR)
+         Exibe telefone fixo, horário de funcionamento e atalho para cotação CNPJ.
+    ========================================================================== -->
+    <div class="bg-navy-950 text-slate-300 text-xs py-2 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2">
+            <!-- Lado Esquerdo: Telefone e Horário -->
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-industrial-amber"></i>
+                    <!-- EDITE AQUI: Telefone principal exibido no topo -->
+                    <strong class="text-white">(11) 3456-7890</strong>
+                </span>
+                <!-- 'hidden md:flex' esconde no celular para não poluir e mostra em telas médias/grandes -->
+                <span class="hidden md:flex items-center gap-1.5 text-slate-400">
+                    <i class="fa-regular fa-clock text-industrial-amber"></i>
+                    Seg. a Sex. das 07:30 às 17:30
+                </span>
+                <span class="hidden lg:flex items-center gap-1.5 text-emerald-400 font-medium">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    Entrega rápida para Indústrias e Obras
+                </span>
+            </div>
+
+            <!-- Lado Direito: Botão que abre a gaveta de orçamento -->
+            <div class="flex items-center space-x-4 ml-auto">
+                <button onclick="openQuoteDrawer()" class="hover:text-white transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-invoice text-industrial-amber"></i>
+                    <span>Cotação B2B / CNPJ</span>
+                </button>
+                <a href="#contato" class="hidden sm:inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Televendas Direto</span>
+                </a>
+            </div>
+        </div>
+    </div>
+

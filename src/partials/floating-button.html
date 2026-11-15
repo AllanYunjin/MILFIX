@@ -1,0 +1,9 @@
+<!-- ARQUIVO: src/partials/floating-button.html | Atualizado em 15/11/2026 | Botão flutuante de cotação (canto inferior direito) | Depois de editar, rode: node build.js -->
+    <!-- BOTÃO FLUTUANTE DE WHATSAPP NO CANTO INFERIOR DIREITO -->
+    <div class="fixed bottom-4 right-4 z-30 flex items-center gap-2">
+        <button onclick="openQuoteDrawer()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3.5 rounded-full shadow-xl flex items-center gap-2.5 transition-transform hover:scale-105 border-2 border-white/20">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="text-sm">Cotar Lista (<span id="floatingQuoteCount">0</span>)</span>
+        </button>
+    </div>
+

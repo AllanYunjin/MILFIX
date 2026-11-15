@@ -1,0 +1,58 @@
+<!-- ARQUIVO: src/partials/product-modal.html | Atualizado em 15/11/2026 | Modal: ficha técnica do produto | Depois de editar, rode: node build.js -->
+    <!-- MODAL 3: FICHA TÉCNICA DETALHADA DO PRODUTO -->
+    <div id="productModalOverlay" onclick="closeProductModal()" class="fixed inset-0 bg-navy-950/75 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div onclick="event.stopPropagation()" class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col">
+            <!-- Topo do Modal -->
+            <div class="bg-navy-900 text-white px-5 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <span id="modalSkuBadge" class="bg-industrial-amber text-navy-950 font-mono font-bold text-xs px-2.5 py-1 rounded">SKU-000</span>
+                    <span id="modalCategoryText" class="text-xs text-slate-300 font-medium">Categoria</span>
+                </div>
+                <button onclick="closeProductModal()" class="p-1.5 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Conteúdo Técnico do Modal -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-5">
+                <div class="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+                    <div id="modalProductIllustration" class="w-32 h-32 sm:w-36 sm:h-36 rounded-xl bg-industrial-bg border border-slate-200 flex items-center justify-center shrink-0 p-4"></div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <h3 id="modalProductName" class="text-xl font-extrabold text-navy-900 leading-snug">Nome do Produto</h3>
+                        <p id="modalProductDesc" class="text-sm text-slate-600 mt-2 leading-relaxed">Descrição técnica completa.</p>
+                        <div class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Disponível em estoque para cotação B2B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Especificações (Norma, Material, Bitola, Embalagem) -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <div class="bg-slate-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-slate-200">
+                        Ficha Técnica &amp; Especificações
+                    </div>
+                    <table class="w-full text-sm text-left">
+                        <tbody id="modalSpecsTable" class="divide-y divide-slate-200"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Rodapé do Modal: Escolher Quantidade e Adicionar -->
+            <div class="p-4 sm:px-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+                    <span class="text-xs font-bold uppercase text-slate-500">Quantidade:</span>
+                    <div class="flex items-center border border-slate-300 rounded-lg bg-white overflow-hidden">
+                        <button onclick="changeModalQty(-1)" class="px-3.5 py-2 hover:bg-slate-100 text-navy-900 font-bold">-</button>
+                        <input type="number" id="modalQtyInput" value="1" min="1" class="w-14 text-center font-mono font-bold text-sm focus:outline-none">
+                        <button onclick="changeModalQty(1)" class="px-3.5 py-2 hover:bg-slate-100 text-navy-900 font-bold">+</button>
+                    </div>
+                </div>
+                <button id="modalAddBtn" class="w-full sm:w-auto bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-extrabold px-6 py-3 rounded-lg shadow flex items-center justify-center gap-2 transition-colors text-sm">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Adicionar ao Orçamento</span>
+                </button>
+            </div>
+        </div>
+    </div>
+

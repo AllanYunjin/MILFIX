@@ -1,0 +1,10 @@
+{
+  "name": "milfix-site",
+  "private": true,
+  "scripts": {
+    "montar": "node build.js",
+    "css": "tailwindcss -i input.css -o assets/css/tailwind.css --minify",
+    "publicar": "node build.js --producao"
+  },
+  "devDependencies": { "tailwindcss": "3.4.17", "terser": "^5.31.0" }
+}

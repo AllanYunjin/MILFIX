@@ -1,0 +1,40 @@
+<!-- ARQUIVO: src/partials/quote-drawer.html | Atualizado em 15/11/2026 | Gaveta: lista de orçamento + formulário do cliente (CPF/CNPJ) | Depois de editar, rode: node build.js -->
+    <!-- GAVETA 4: LISTA DE ORÇAMENTO E ENVIO PARA WHATSAPP -->
+    <div id="quoteDrawerOverlay" onclick="closeQuoteDrawer()" class="fixed inset-0 bg-navy-950/75 backdrop-blur-xs z-50 hidden"></div>
+    <div id="quoteDrawer" class="fixed top-0 right-0 bottom-0 w-96 max-w-[95vw] bg-white z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-4 bg-navy-900 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-clipboard-list text-industrial-amber text-xl"></i>
+                <div>
+                    <h3 class="font-bold text-base leading-none">Lista de Orçamento</h3>
+                    <span class="text-[11px] text-slate-300">Cotação B2B sem compromisso</span>
+                </div>
+            </div>
+            <button onclick="closeQuoteDrawer()" class="p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Lista de Produtos Adicionados -->
+        <div id="quoteItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-industrial-bg"></div>
+
+        <!-- Formulário do Cliente: salvo no banco e enviado ao WhatsApp -->
+        <div class="p-4 bg-white border-t border-slate-200 space-y-2 max-h-[62vh] overflow-y-auto">
+            <label class="block text-xs font-bold text-navy-900 uppercase">Seus dados para cotação</label>
+            <input type="text" id="qName" autocomplete="name" placeholder="Nome / Razão Social *" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="qDoc" inputmode="numeric" placeholder="CPF ou CNPJ *" oninput="maskDoc(this)" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="tel" id="qPhone" autocomplete="tel" placeholder="WhatsApp / Telefone com DDD *" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="email" id="qEmail" autocomplete="email" placeholder="E-mail" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="qCity" placeholder="Cidade / UF" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="quoteNotesInput" placeholder="Observação (ex: prazo de entrega)" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <label class="flex items-start gap-2 text-[11px] text-slate-500 leading-snug">
+                <input type="checkbox" id="qConsent" class="mt-0.5">
+                <span>Concordo que a MILFIX armazene meus dados para elaborar e responder esta cotação (LGPD). *</span>
+            </label>
+            <button id="qSendBtn" onclick="submitQuote()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg shadow flex items-center justify-center gap-2 text-sm transition-colors">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Enviar Orçamento via WhatsApp</span>
+            </button>
+        </div>
+    </div>
+

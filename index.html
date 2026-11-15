@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- ARQUIVO GERADO em 15/11/2026 por build.js. NÃO edite o index.html direto: edite src/index.template.html ou src/partials/*.html e rode "node build.js" -->
+    <!-- =========================================================================
+         1. CONFIGURAÇÕES DA PÁGINA (HEAD)
+         Aqui definimos codificação de acentos (UTF-8), adaptação para celular,
+         título da aba e carregamos as bibliotecas externas (Tailwind e Ícones).
+    ========================================================================== -->
+    <meta charset="UTF-8">
+    <!-- Essa tag abaixo é OBRIGATÓRIA para o site se adaptar perfeitamente ao celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título que aparece na aba do navegador (Edite aqui com o nome da sua empresa) -->
+    <title>MILFIX | Fixadores, Abrasivos e Soluções Industriais B2B</title>
+    
+    <!-- Framework Tailwind CSS: permite estilizar tudo direto nas classes HTML -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    
+    <!-- Fontes do Google: 'Inter' para textos gerais e 'JetBrains Mono' para códigos SKU -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Biblioteca Font Awesome: fornece ícones (telefone, lupa, carrinho, WhatsApp, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- =========================================================================
+         2. PALETA DE CORES PERSONALIZADA (TAILWIND CONFIG)
+         Se quiser mudar a cor principal do site inteiro (ex: trocar azul por verde
+         ou o amarelo por laranja), basta alterar os códigos hexadecimais (#) abaixo!
+    ========================================================================== -->
+    <!-- Arquivo com as cores/fontes: assets/js/tailwind-config.js (precisa vir DEPOIS do Tailwind acima) -->
+    <script src="assets/js/tailwind-config.js"></script>
+    <!-- SEU CSS PRÓPRIO (se precisar de algo que o Tailwind não faz): assets/css/custom.css -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-industrial-bg text-slate-800 font-sans antialiased selection:bg-industrial-amber selection:text-navy-900 overflow-x-hidden">
+
+<!-- ARQUIVO: src/partials/topbar.html | Atualizado em 15/11/2026 | Barra escura do topo: telefone, horário e atalho de cotação | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         3. BARRA SUPERIOR DE CONTATO RÁPIDO (TOP BAR)
+         Exibe telefone fixo, horário de funcionamento e atalho para cotação CNPJ.
+    ========================================================================== -->
+    <div class="bg-navy-950 text-slate-300 text-xs py-2 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2">
+            <!-- Lado Esquerdo: Telefone e Horário -->
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-industrial-amber"></i>
+                    <!-- EDITE AQUI: Telefone principal exibido no topo -->
+                    <strong class="text-white">(11) 3456-7890</strong>
+                </span>
+                <!-- 'hidden md:flex' esconde no celular para não poluir e mostra em telas médias/grandes -->
+                <span class="hidden md:flex items-center gap-1.5 text-slate-400">
+                    <i class="fa-regular fa-clock text-industrial-amber"></i>
+                    Seg. a Sex. das 07:30 às 17:30
+                </span>
+                <span class="hidden lg:flex items-center gap-1.5 text-emerald-400 font-medium">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    Entrega rápida para Indústrias e Obras
+                </span>
+            </div>
+
+            <!-- Lado Direito: Botão que abre a gaveta de orçamento -->
+            <div class="flex items-center space-x-4 ml-auto">
+                <button onclick="openQuoteDrawer()" class="hover:text-white transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-invoice text-industrial-amber"></i>
+                    <span>Cotação B2B / CNPJ</span>
+                </button>
+                <a href="#contato" class="hidden sm:inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Televendas Direto</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+<!-- ARQUIVO: src/partials/header.html | Atualizado em 15/11/2026 | Cabeçalho fixo: logo, busca, botão de orçamento. O menu de departamentos (nav) é incluído aqui dentro | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         4. CABEÇALHO PRINCIPAL (HEADER FIXO NO TOPO)
+         Contém: Botão menu mobile, Logotipo, Barra de Pesquisa e Botão Orçamento.
+         A classe 'sticky top-0 z-40' faz ele acompanhar a rolagem da página.
+    ========================================================================== -->
+    <header class="bg-navy-900 text-white sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex items-center justify-between gap-3 md:gap-6">
+                
+                <!-- Bloco Esquerdo: Botão Hambúrguer (só no celular) + Logo da Empresa -->
+                <div class="flex items-center gap-3">
+                    <!-- 'lg:hidden' faz este botão aparecer APENAS em celulares e tablets -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Abrir menu de categorias" class="lg:hidden p-2.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-white transition-colors">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                    
+                    <!-- Logotipo Clicável (ao clicar, limpa filtros e volta ao início) -->
+                    <a href="#" onclick="resetAllFilters(event)" class="flex items-center gap-2.5 group">
+                        <!-- Ícone Hexagonal (Porca Sextavada) feito em SVG -->
+                        <div class="w-10 h-10 rounded-lg bg-industrial-amber flex items-center justify-center text-navy-950 shadow-md group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                            </svg>
+                        </div>
+                        <!-- EDITE AQUI: Nome e Slogan da sua empresa -->
+                        <div class="leading-none">
+                            <span class="text-2xl font-extrabold tracking-tight text-white">MIL<span class="text-industrial-amber">FIX</span></span>
+                            <span class="block text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-0.5">Fixação &amp; Industrial</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Bloco Central: Barra de Busca para Computador ('hidden md:flex') -->
+                <div class="hidden md:flex flex-1 max-w-2xl relative">
+                    <div class="relative w-full">
+                        <!-- oninput="handleSearch(this.value)" filtra os produtos a cada letra digitada -->
+                        <input 
+                            type="text" 
+                            id="desktopSearchInput"
+                            oninput="handleSearch(this.value)"
+                            placeholder="Busque por produto, bitola, norma DIN ou código SKU (ex: M10, Inox, Disco)..." 
+                            class="w-full bg-white text-slate-900 placeholder-slate-400 text-sm rounded-lg pl-4 pr-24 py-2.5 border-2 border-transparent focus:border-industrial-amber focus:outline-none shadow-inner"
+                        >
+                        <!-- Botão 'X' para limpar a busca rapidamente -->
+                        <button id="clearSearchDesktop" onclick="clearSearch()" class="hidden absolute right-12 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <!-- Botão Amarelo de Buscar (rola a tela até o catálogo) -->
+                        <button onclick="scrollToCatalog()" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-bold px-3.5 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bloco Direito: Botão da Lista de Orçamento com Contador -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openQuoteDrawer()" class="relative flex items-center gap-2.5 bg-navy-800 hover:bg-navy-700 border border-navy-700 px-3.5 py-2.5 rounded-lg transition-all group">
+                        <div class="relative">
+                            <i class="fa-solid fa-clipboard-list text-industrial-amber text-xl group-hover:scale-110 transition-transform"></i>
+                            <!-- Bolinha vermelha que mostra quantos itens estão no orçamento -->
+                            <span id="quoteBadge" class="absolute -top-2 -right-2.5 bg-industrial-red text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                        </div>
+                        <div class="hidden sm:block text-left leading-tight">
+                            <span class="block text-[11px] text-slate-300">Sua Cotação</span>
+                            <span class="text-xs font-bold text-white">Orçamento</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Busca Exclusiva para Celular ('md:hidden' esconde no computador) -->
+            <div class="mt-3 md:hidden relative">
+                <input 
+                    type="text" 
+                    id="mobileSearchInput"
+                    oninput="handleSearch(this.value)"
+                    placeholder="Buscar peça, bitola (M10), disco, EPI..." 
+                    class="w-full bg-white text-slate-900 placeholder-slate-400 text-sm rounded-lg pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-industrial-amber"
+                >
+                <i class="fa-solid fa-magnifying-glass text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+            </div>
+        </div>
+
+<!-- ARQUIVO: src/partials/nav.html | Atualizado em 15/11/2026 | Menu horizontal de departamentos (só no computador) | Depois de editar, rode: node build.js -->
+        <!-- =====================================================================
+             5. MENU HORIZONTAL DE DEPARTAMENTOS (APENAS COMPUTADOR - 'hidden lg:block')
+             Ao clicar em qualquer categoria, o catálogo filtra automaticamente.
+        ====================================================================== -->
+        <nav class="hidden lg:block bg-navy-800 border-t border-navy-700/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ul class="flex items-center space-x-1 text-sm font-medium">
+                    <li>
+                        <button onclick="selectCategoryFromNav('Todos')" class="nav-cat-btn px-4 py-2.5 text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-industrial-amber">
+                            <i class="fa-solid fa-grip text-industrial-amber"></i>
+                            <span>Todo o Catálogo</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Fixadores')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-bolt text-industrial-amber/80"></i>
+                            <span>Fixadores</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-compact-disc text-industrial-amber/80"></i>
+                            <span>Abrasivos e Corte</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Solda')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-fire-flame-curved text-industrial-amber/80"></i>
+                            <span>Solda</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('EPIs')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-helmet-safety text-industrial-amber/80"></i>
+                            <span>EPIs &amp; Segurança</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="nav-cat-btn px-4 py-2.5 text-slate-200 hover:text-white hover:bg-navy-700 flex items-center gap-2 transition-colors border-b-2 border-transparent">
+                            <i class="fa-solid fa-wrench text-industrial-amber/80"></i>
+                            <span>Ferramentas Manuais</span>
+                        </button>
+                    </li>
+                    <li class="ml-auto">
+                        <a href="#artigos" class="px-3 py-2 text-xs font-semibold text-industrial-amber hover:underline flex items-center gap-1.5">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <span>Fique por Dentro</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<!-- ARQUIVO: src/partials/hero.html | Atualizado em 15/11/2026 | Banner principal (hero) | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         6. BANNER PRINCIPAL (HERO SECTION)
+         Apresentação institucional da empresa, botões de ação e 4 diferenciais B2B.
+    ========================================================================== -->
+    <section class="relative bg-navy-900 text-white overflow-hidden border-b-4 border-industrial-amber">
+        <!-- Grade Hexagonal Decorativa ao Fundo (SVG leve que não pesa no celular) -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="hexGrid" width="56" height="100" patternUnits="userSpaceOnUse">
+                        <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hexGrid)"/>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Coluna da Esquerda: Título e Botões -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-navy-800/90 border border-navy-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-industrial-amber">
+                        <span class="w-2 h-2 rounded-full bg-industrial-amber animate-pulse"></span>
+                        <span>CATÁLOGO TÉCNICO B2B • ATENDIMENTO INDUSTRIAL</span>
+                    </div>
+                    <!-- EDITE AQUI: Título Principal do Banner -->
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Soluções em <span class="text-industrial-amber">Fixação, Abrasivos</span> e Metal Mecânica para a Indústria
+                    </h1>
+                    <!-- EDITE AQUI: Subtítulo descritivo -->
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Linha completa de parafusos certificados (DIN/ISO), discos de corte de alto rendimento, consumíveis de solda e EPIs com estoque estratégico e cotação ágil.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button onclick="scrollToCatalog()" class="w-full sm:w-auto bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-extrabold px-6 py-3.5 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <span>Explorar Catálogo</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button onclick="openQuoteDrawer()" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-700 border border-slate-600 text-white font-semibold px-6 py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                            <span>Cotação Rápida</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coluna da Direita: 4 Cards de Diferenciais Técnicos -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-industrial-amber/15 text-industrial-amber flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Normas DIN &amp; ASTM</h3>
+                        <p class="text-xs text-slate-300 mt-1">Rastreabilidade e lotes certificados para montagem estrutural.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-boxes-stacked text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">+15.000 SKUs</h3>
+                        <p class="text-xs text-slate-300 mt-1">Pronta entrega em fixadores inox, aço carbono e abrasivos.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sky-500/15 text-sky-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Faturamento B2B</h3>
+                        <p class="text-xs text-slate-300 mt-1">Condições especiais para compras corporativas e indústrias.</p>
+                    </div>
+                    <div class="bg-navy-800/80 backdrop-blur border border-navy-700 p-4 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-industrial-red/20 text-rose-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-headset text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm sm:text-base">Suporte Técnico</h3>
+                        <p class="text-xs text-slate-300 mt-1">Especialistas para especificar a peça exata da sua operação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- ARQUIVO: src/partials/shortcuts.html | Atualizado em 15/11/2026 | Cards de atalho por departamento | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         7. CARDS DE ATALHO POR DEPARTAMENTO
+         Ficam sobrepostos na borda inferior do banner para acesso rápido no celular.
+    ========================================================================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <button onclick="selectCategoryFromNav('Fixadores')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Fixadores</span>
+                    <span class="text-[11px] text-slate-500">Parafusos e Porcas</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-compact-disc"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Abrasivos</span>
+                    <span class="text-[11px] text-slate-500">Discos e Lixas</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Solda')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Solda</span>
+                    <span class="text-[11px] text-slate-500">Eletrodos e MIG</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('EPIs')" class="bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">EPIs</span>
+                    <span class="text-[11px] text-slate-500">Proteção NR-06</span>
+                </div>
+            </button>
+            <button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="col-span-2 sm:col-span-1 bg-white hover:border-industrial-amber border border-slate-200 p-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 text-left group">
+                <div class="w-10 h-10 rounded-lg bg-navy-900 text-industrial-amber flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-navy-900 text-xs sm:text-sm">Ferramentas</span>
+                    <span class="text-[11px] text-slate-500">Chaves e Manutenção</span>
+                </div>
+            </button>
+        </div>
+    </section>
+
+<!-- ARQUIVO: src/partials/catalog.html | Atualizado em 15/11/2026 | Área do catálogo: filtros laterais, busca, ordenação e grade de produtos | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         8. ÁREA PRINCIPAL DO CATÁLOGO DE PRODUTOS
+         Contém: Barra lateral de filtros (Desktop), Botão Filtro (Mobile),
+         Chips de filtros selecionados e a Grade de Produtos (2 colunas no
+         celular, 3 no tablet e 4 no computador).
+    ========================================================================== -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Título da Seção + Botão Filtro Mobile + Caixa de Ordenação -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
+            <div>
+                <h2 class="text-2xl font-extrabold text-navy-900 flex items-center gap-2">
+                    <span class="w-2 h-7 bg-industrial-amber rounded-sm inline-block"></span>
+                    <span>Catálogo Técnico de Produtos</span>
+                </h2>
+                <!-- Texto atualizado via JS mostrando quantos produtos aparecem -->
+                <p id="resultsCounter" class="text-sm text-slate-500 mt-1">Exibindo 12 itens disponíveis para cotação</p>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <!-- Botão Abrir Gaveta de Filtros (Aparece apenas no Celular/Tablet) -->
+                <button onclick="toggleFilterDrawer(true)" class="lg:hidden flex-1 sm:flex-none bg-navy-900 hover:bg-navy-800 text-white font-semibold px-4 py-2.5 rounded-lg text-sm flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-sliders text-industrial-amber"></i>
+                    <span>Filtrar Produtos</span>
+                    <span id="mobileActiveFilterCount" class="hidden bg-industrial-amber text-navy-950 text-xs font-bold px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+
+                <!-- Seletor de Ordenação -->
+                <select id="sortSelect" onchange="applyFilters()" aria-label="Ordenar produtos" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:border-navy-900">
+                    <option value="featured">Destaques Técnicos</option>
+                    <option value="sku">Código SKU (A-Z)</option>
+                    <option value="name">Nome (A-Z)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Barra de Etiquetas (Chips) dos Filtros Ativos no Momento -->
+        <div id="activeFiltersBar" class="hidden flex-wrap items-center gap-2 mb-6">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Filtros ativos:</span>
+            <div id="activeFilterTags" class="flex flex-wrap gap-2"></div>
+            <button onclick="resetAllFilters()" class="text-xs font-bold text-industrial-red hover:underline ml-2">Limpar tudo</button>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 items-start">
+            
+            <!-- BARRA LATERAL DE FILTROS (APENAS COMPUTADOR - 'hidden lg:block') -->
+            <aside class="hidden lg:block w-64 shrink-0 bg-white rounded-xl border border-slate-200 shadow-sm p-5 sticky top-32">
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                    <h3 class="font-bold text-navy-900 flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-industrial-amber"></i>
+                        <span>Filtros Técnicos</span>
+                    </h3>
+                    <button onclick="resetAllFilters()" class="text-xs text-slate-400 hover:text-industrial-red font-medium transition-colors">Limpar</button>
+                </div>
+                
+                <!-- O JavaScript preenche este container automaticamente com base nos produtos -->
+                <div id="desktopFiltersContainer" class="space-y-6"></div>
+            </aside>
+
+            <!-- GRADE DE CARDS DE PRODUTOS -->
+            <div class="flex-1 w-full">
+                <!--
+                    EXPLICANDO AS COLUNAS RESPONSIVAS ABAIXO:
+                    - grid-cols-2: 2 produtos lado a lado no CELULAR
+                    - md:grid-cols-3: 3 produtos lado a lado no TABLET
+                    - xl:grid-cols-4: 4 produtos lado a lado no COMPUTADOR
+                -->
+                <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4">
+                    <!-- Os cards são criados dinamicamente pela função renderProductsGrid() -->
+                </div>
+
+                <!-- Mensagem exibida quando a busca ou filtro não encontra nenhum produto -->
+                <div id="emptyState" class="hidden bg-white rounded-xl border border-slate-200 p-10 text-center">
+                    <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900">Nenhum produto técnico encontrado</h3>
+                    <p class="text-sm text-slate-500 max-w-md mx-auto mt-1 mb-5">
+                        Não encontramos itens correspondentes aos filtros ou termo pesquisado. Tente limpar os filtros ou buscar por outro código.
+                    </p>
+                    <button onclick="resetAllFilters()" class="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors">
+                        Restaurar Catálogo Completo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<!-- ARQUIVO: src/partials/articles.html | Atualizado em 15/11/2026 | Seção "Fique por dentro" (guias técnicos) | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         9. SEÇÃO "FIQUE POR DENTRO" (BLOG / GUIAS TÉCNICOS)
+         Ajuda no posicionamento técnico da marca e dá dicas práticas aos compradores.
+    ========================================================================== -->
+    <section id="artigos" class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-industrial-amber">Conteúdo Técnico &amp; Engenharia</span>
+                    <h2 class="text-2xl font-extrabold text-navy-900 mt-1">Fique por Dentro</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-md">Guias práticos de aplicação, normas de segurança e especificações para manutenção industrial.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Artigo 1 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-900 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polygon points="32 6 54 19 54 45 32 58 10 45 10 19 32 6"></polygon>
+                            <circle cx="32" cy="32" r="10"></circle>
+                            <path d="M22 32h20M32 22v20" stroke-dasharray="3 3"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-industrial-amber text-navy-950 text-[11px] font-extrabold px-2.5 py-1 rounded">FIXAÇÃO</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">NORMA DIN 933 / ISO 4017</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Aço Inox 304 vs. Zincado Branco: Quando usar cada acabamento?</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Entenda a resistência à corrosão em ambientes externos, indústrias alimentícias e estruturas metálicas pesadas.</p>
+                        <button onclick="showToast('Artigo técnico: Aço Inox 304 oferece alta resistência à oxidação em ambientes úmidos e químicos.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artigo 2 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-800 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="32" cy="32" r="24"></circle>
+                            <circle cx="32" cy="32" r="7"></circle>
+                            <path d="M32 8v8M32 48v8M8 32h8M48 32h8"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-industrial-red text-white text-[11px] font-extrabold px-2.5 py-1 rounded">ABRASIVOS</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">SEGURANÇA EM CORTE</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Como escolher o disco de corte fino ideal para aço inox e carbono</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Saiba por que discos livres de ferro, enxofre e cloro evitam a contaminação e o superaquecimento da peça.</p>
+                        <button onclick="showToast('Dica técnica: Sempre verifique o RPM máximo do disco antes de acoplar na esmerilhadeira.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artigo 3 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-900 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M16 40c0-10 7-18 16-18s16 8 16 18H16z"></path>
+                            <path d="M12 40h40M32 16v6"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-emerald-500 text-navy-950 text-[11px] font-extrabold px-2.5 py-1 rounded">SEGURANÇA NR-06</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">CERTIFICADO DE APROVAÇÃO (CA)</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Checklist de EPIs obrigatórios para serralheria e caldeiraria</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Proteção ocular contra fagulhas, luvas de raspa e filtros respiratórios para fumos metálicos de solda.</p>
+                        <button onclick="showToast('Norma NR-06: Todos os EPIs do catálogo acompanham Certificado de Aprovação (CA) vigente.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+<!-- ARQUIVO: src/partials/footer.html | Atualizado em 15/11/2026 | Rodapé institucional e contatos | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         10. RODAPÉ INSTITUCIONAL (FOOTER)
+         Contém informações da empresa, links de categorias, contatos e endereço.
+    ========================================================================== -->
+    <footer id="contato" class="bg-navy-950 text-slate-300 border-t-4 border-industrial-amber">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Coluna 1: Marca e Certificações -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-lg bg-industrial-amber flex items-center justify-center text-navy-950">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-extrabold text-white">MIL<span class="text-industrial-amber">FIX</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Distribuidora especializada em elementos de fixação, abrasivos, solda e equipamentos de proteção para indústrias, construtoras e metalúrgicas.
+                    </p>
+                    <div class="flex items-center gap-3 pt-1">
+                        <span class="px-2.5 py-1 bg-navy-900 border border-navy-800 rounded text-xs font-mono text-slate-300">ISO 9001</span>
+                        <span class="px-2.5 py-1 bg-navy-900 border border-navy-800 rounded text-xs font-mono text-slate-300">DIN / ASTM</span>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Atalhos dos Departamentos -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Departamentos</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><button onclick="selectCategoryFromNav('Fixadores')" class="hover:text-industrial-amber transition-colors">Fixadores &amp; Parafusos</button></li>
+                        <li><button onclick="selectCategoryFromNav('Abrasivos e Corte')" class="hover:text-industrial-amber transition-colors">Discos e Abrasivos</button></li>
+                        <li><button onclick="selectCategoryFromNav('Solda')" class="hover:text-industrial-amber transition-colors">Consumíveis de Solda</button></li>
+                        <li><button onclick="selectCategoryFromNav('EPIs')" class="hover:text-industrial-amber transition-colors">EPIs e Segurança</button></li>
+                        <li><button onclick="selectCategoryFromNav('Ferramentas Manuais')" class="hover:text-industrial-amber transition-colors">Ferramentas Manuais</button></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Canais de Atendimento (EDITE AQUI SEUS TELEFONES E E-MAIL) -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Atendimento Corporativo</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-phone text-industrial-amber mt-1"></i>
+                            <div>
+                                <span class="block text-white font-semibold">(11) 3456-7890</span>
+                                <span class="text-xs text-slate-400">Televendas e Engenharia</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mt-1 text-base"></i>
+                            <div>
+                                <span class="block text-white font-semibold">(11) 99876-5432</span>
+                                <span class="text-xs text-slate-400">Cotação Rápida via WhatsApp</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-regular fa-envelope text-industrial-amber mt-1"></i>
+                            <span>vendas@milfixindustrial.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Endereço e Mapa Esquemático (EDITE AQUI SEU ENDEREÇO) -->
+                <div>
+                    <h4 class="text-white font-bold uppercase text-xs tracking-wider mb-4">Centro de Distribuição</h4>
+                    <div class="bg-navy-900 border border-navy-800 rounded-xl p-3.5 space-y-2.5">
+                        <div class="h-24 rounded-lg bg-navy-800 relative overflow-hidden flex items-center justify-center border border-navy-700">
+                            <svg class="w-full h-full opacity-35" viewBox="0 0 200 100">
+                                <path d="M0 20 L200 80 M40 0 L120 100 M0 70 L200 30" stroke="#94A3B8" stroke-width="3" fill="none"/>
+                                <path d="M100 0 L100 100" stroke="#F59E0B" stroke-width="4" stroke-dasharray="6 4"/>
+                            </svg>
+                            <div class="relative z-10 bg-navy-950/90 px-3 py-1.5 rounded-full border border-industrial-amber flex items-center gap-1.5 text-xs font-bold text-white shadow">
+                                <i class="fa-solid fa-location-dot text-industrial-red"></i>
+                                <span>Distrito Industrial • SP</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Av. Industrial, 1450 - Galpão 04<br>
+                            Distrito Industrial • CEP 09080-500
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-navy-900 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2026 MILFIX Soluções Industriais Ltda. Todos os direitos reservados.</p>
+                <p>Valores e prazos sujeitos à análise de cotação B2B.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- =========================================================================
+         11. COMPONENTES FLUTUANTES, GAVETAS MOBILE E MODAIS (SOBREPOSIÇÕES)
+         Estes elementos ficam ocultos até que o usuário clique em algum botão.
+    ========================================================================== -->
+
+<!-- ARQUIVO: src/partials/floating-button.html | Atualizado em 15/11/2026 | Botão flutuante de cotação (canto inferior direito) | Depois de editar, rode: node build.js -->
+    <!-- BOTÃO FLUTUANTE DE WHATSAPP NO CANTO INFERIOR DIREITO -->
+    <div class="fixed bottom-4 right-4 z-30 flex items-center gap-2">
+        <button onclick="openQuoteDrawer()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3.5 rounded-full shadow-xl flex items-center gap-2.5 transition-transform hover:scale-105 border-2 border-white/20">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="text-sm">Cotar Lista (<span id="floatingQuoteCount">0</span>)</span>
+        </button>
+    </div>
+
+<!-- ARQUIVO: src/partials/mobile-menu.html | Atualizado em 15/11/2026 | Gaveta 1: menu lateral de categorias (celular) | Depois de editar, rode: node build.js -->
+    <!-- GAVETA 1: MENU LATERAL DE CATEGORIAS (CELULAR) -->
+    <div id="mobileMenuOverlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-navy-950/70 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+    <div id="mobileMenuDrawer" class="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-navy-900 text-white z-50 transform -translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-4 bg-navy-950 flex items-center justify-between border-b border-navy-800">
+            <span class="font-extrabold text-lg">MIL<span class="text-industrial-amber">FIX</span> • Menu</span>
+            <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        <div class="p-4 flex-1 overflow-y-auto space-y-2">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">Departamentos Industriais</p>
+            <button onclick="selectCategoryFromMobile('Todos')" class="w-full text-left px-3.5 py-3 rounded-lg bg-navy-800/70 hover:bg-navy-800 flex items-center gap-3 font-semibold text-sm">
+                <i class="fa-solid fa-grip text-industrial-amber w-5"></i>
+                <span>Todo o Catálogo</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Fixadores')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-bolt text-industrial-amber w-5"></i>
+                <span>Fixadores</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Abrasivos e Corte')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-compact-disc text-industrial-amber w-5"></i>
+                <span>Abrasivos e Corte</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Solda')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-fire-flame-curved text-industrial-amber w-5"></i>
+                <span>Solda</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('EPIs')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-helmet-safety text-industrial-amber w-5"></i>
+                <span>EPIs &amp; Segurança</span>
+            </button>
+            <button onclick="selectCategoryFromMobile('Ferramentas Manuais')" class="w-full text-left px-3.5 py-3 rounded-lg hover:bg-navy-800 flex items-center gap-3 font-medium text-sm">
+                <i class="fa-solid fa-wrench text-industrial-amber w-5"></i>
+                <span>Ferramentas Manuais</span>
+            </button>
+        </div>
+        <div class="p-4 border-t border-navy-800 bg-navy-950 text-xs text-slate-400 space-y-2">
+            <div class="flex items-center gap-2 text-white font-semibold">
+                <i class="fa-solid fa-phone text-industrial-amber"></i>
+                <span>(11) 3456-7890</span>
+            </div>
+            <p>Atendimento B2B: Seg. a Sex. 07:30–17:30</p>
+        </div>
+    </div>
+
+<!-- ARQUIVO: src/partials/filter-drawer.html | Atualizado em 15/11/2026 | Gaveta 2: filtros técnicos (celular) | Depois de editar, rode: node build.js -->
+    <!-- GAVETA 2: FILTROS TÉCNICOS (CELULAR) -->
+    <div id="filterDrawerOverlay" onclick="toggleFilterDrawer(false)" class="fixed inset-0 bg-navy-950/70 backdrop-blur-xs z-50 hidden"></div>
+    <div id="filterDrawer" class="fixed top-0 right-0 bottom-0 w-80 max-w-[90vw] bg-white z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-4 bg-navy-900 text-white flex items-center justify-between">
+            <h3 class="font-bold flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-industrial-amber"></i>
+                <span>Filtrar Catálogo</span>
+            </h3>
+            <button onclick="toggleFilterDrawer(false)" class="p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <!-- Sincronizado automaticamente com os filtros do desktop -->
+        <div id="mobileFiltersContainer" class="p-5 flex-1 overflow-y-auto space-y-6"></div>
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center gap-3">
+            <button onclick="resetAllFilters()" class="flex-1 py-2.5 px-4 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm">
+                Limpar
+            </button>
+            <button onclick="toggleFilterDrawer(false)" class="flex-1 py-2.5 px-4 rounded-lg bg-industrial-amber text-navy-950 font-extrabold text-sm shadow">
+                Ver Resultados
+            </button>
+        </div>
+    </div>
+
+<!-- ARQUIVO: src/partials/product-modal.html | Atualizado em 15/11/2026 | Modal: ficha técnica do produto | Depois de editar, rode: node build.js -->
+    <!-- MODAL 3: FICHA TÉCNICA DETALHADA DO PRODUTO -->
+    <div id="productModalOverlay" onclick="closeProductModal()" class="fixed inset-0 bg-navy-950/75 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div onclick="event.stopPropagation()" class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col">
+            <!-- Topo do Modal -->
+            <div class="bg-navy-900 text-white px-5 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <span id="modalSkuBadge" class="bg-industrial-amber text-navy-950 font-mono font-bold text-xs px-2.5 py-1 rounded">SKU-000</span>
+                    <span id="modalCategoryText" class="text-xs text-slate-300 font-medium">Categoria</span>
+                </div>
+                <button onclick="closeProductModal()" class="p-1.5 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Conteúdo Técnico do Modal -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-5">
+                <div class="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+                    <div id="modalProductIllustration" class="w-32 h-32 sm:w-36 sm:h-36 rounded-xl bg-industrial-bg border border-slate-200 flex items-center justify-center shrink-0 p-4"></div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <h3 id="modalProductName" class="text-xl font-extrabold text-navy-900 leading-snug">Nome do Produto</h3>
+                        <p id="modalProductDesc" class="text-sm text-slate-600 mt-2 leading-relaxed">Descrição técnica completa.</p>
+                        <div class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Disponível em estoque para cotação B2B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Especificações (Norma, Material, Bitola, Embalagem) -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <div class="bg-slate-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-slate-200">
+                        Ficha Técnica &amp; Especificações
+                    </div>
+                    <table class="w-full text-sm text-left">
+                        <tbody id="modalSpecsTable" class="divide-y divide-slate-200"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Rodapé do Modal: Escolher Quantidade e Adicionar -->
+            <div class="p-4 sm:px-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+                    <span class="text-xs font-bold uppercase text-slate-500">Quantidade:</span>
+                    <div class="flex items-center border border-slate-300 rounded-lg bg-white overflow-hidden">
+                        <button onclick="changeModalQty(-1)" class="px-3.5 py-2 hover:bg-slate-100 text-navy-900 font-bold">-</button>
+                        <input type="number" id="modalQtyInput" value="1" min="1" class="w-14 text-center font-mono font-bold text-sm focus:outline-none">
+                        <button onclick="changeModalQty(1)" class="px-3.5 py-2 hover:bg-slate-100 text-navy-900 font-bold">+</button>
+                    </div>
+                </div>
+                <button id="modalAddBtn" class="w-full sm:w-auto bg-industrial-amber hover:bg-industrial-amberHover text-navy-950 font-extrabold px-6 py-3 rounded-lg shadow flex items-center justify-center gap-2 transition-colors text-sm">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Adicionar ao Orçamento</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<!-- ARQUIVO: src/partials/quote-drawer.html | Atualizado em 15/11/2026 | Gaveta: lista de orçamento + formulário do cliente (CPF/CNPJ) | Depois de editar, rode: node build.js -->
+    <!-- GAVETA 4: LISTA DE ORÇAMENTO E ENVIO PARA WHATSAPP -->
+    <div id="quoteDrawerOverlay" onclick="closeQuoteDrawer()" class="fixed inset-0 bg-navy-950/75 backdrop-blur-xs z-50 hidden"></div>
+    <div id="quoteDrawer" class="fixed top-0 right-0 bottom-0 w-96 max-w-[95vw] bg-white z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-4 bg-navy-900 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-clipboard-list text-industrial-amber text-xl"></i>
+                <div>
+                    <h3 class="font-bold text-base leading-none">Lista de Orçamento</h3>
+                    <span class="text-[11px] text-slate-300">Cotação B2B sem compromisso</span>
+                </div>
+            </div>
+            <button onclick="closeQuoteDrawer()" class="p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Lista de Produtos Adicionados -->
+        <div id="quoteItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-industrial-bg"></div>
+
+        <!-- Formulário do Cliente: salvo no banco e enviado ao WhatsApp -->
+        <div class="p-4 bg-white border-t border-slate-200 space-y-2 max-h-[62vh] overflow-y-auto">
+            <label class="block text-xs font-bold text-navy-900 uppercase">Seus dados para cotação</label>
+            <input type="text" id="qName" autocomplete="name" placeholder="Nome / Razão Social *" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="qDoc" inputmode="numeric" placeholder="CPF ou CNPJ *" oninput="maskDoc(this)" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="tel" id="qPhone" autocomplete="tel" placeholder="WhatsApp / Telefone com DDD *" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="email" id="qEmail" autocomplete="email" placeholder="E-mail" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="qCity" placeholder="Cidade / UF" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <input type="text" id="quoteNotesInput" placeholder="Observação (ex: prazo de entrega)" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:border-navy-900">
+            <label class="flex items-start gap-2 text-[11px] text-slate-500 leading-snug">
+                <input type="checkbox" id="qConsent" class="mt-0.5">
+                <span>Concordo que a MILFIX armazene meus dados para elaborar e responder esta cotação (LGPD). *</span>
+            </label>
+            <button id="qSendBtn" onclick="submitQuote()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg shadow flex items-center justify-center gap-2 text-sm transition-colors">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Enviar Orçamento via WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+<!-- ARQUIVO: src/partials/toast.html | Atualizado em 15/11/2026 | Aviso rápido na tela (toast) | Depois de editar, rode: node build.js -->
+    <!-- AVISO RÁPIDO NA TELA (TOAST) -->
+    <div id="toastNotification" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-navy-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-industrial-amber flex items-center gap-3 text-sm font-medium opacity-0 pointer-events-none transition-all duration-300 max-w-[90vw]">
+        <i class="fa-solid fa-circle-check text-industrial-amber text-lg shrink-0"></i>
+        <span id="toastMessage">Item adicionado à lista de orçamento!</span>
+    </div>
+
+
+    <!-- =========================================================================
+         12. SCRIPTS DO SITE (CÉREBRO DO SITE) - agora em arquivos separados: assets/js/
+         A ORDEM IMPORTA: cada arquivo usa funções/variáveis dos anteriores. Não troque a ordem!
+    ========================================================================== -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/products-data.js"></script>
+    <script src="assets/js/state.js"></script>
+    <script src="assets/js/svg-icons.js"></script>
+    <script src="assets/js/filters.js"></script>
+    <script src="assets/js/product-cards.js"></script>
+    <script src="assets/js/product-modal.js"></script>
+    <script src="assets/js/quote.js"></script>
+    <script src="assets/js/ui-drawers.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

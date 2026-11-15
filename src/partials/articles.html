@@ -1,0 +1,81 @@
+<!-- ARQUIVO: src/partials/articles.html | Atualizado em 15/11/2026 | Seção "Fique por dentro" (guias técnicos) | Depois de editar, rode: node build.js -->
+    <!-- =========================================================================
+         9. SEÇÃO "FIQUE POR DENTRO" (BLOG / GUIAS TÉCNICOS)
+         Ajuda no posicionamento técnico da marca e dá dicas práticas aos compradores.
+    ========================================================================== -->
+    <section id="artigos" class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-industrial-amber">Conteúdo Técnico &amp; Engenharia</span>
+                    <h2 class="text-2xl font-extrabold text-navy-900 mt-1">Fique por Dentro</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-md">Guias práticos de aplicação, normas de segurança e especificações para manutenção industrial.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Artigo 1 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-900 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polygon points="32 6 54 19 54 45 32 58 10 45 10 19 32 6"></polygon>
+                            <circle cx="32" cy="32" r="10"></circle>
+                            <path d="M22 32h20M32 22v20" stroke-dasharray="3 3"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-industrial-amber text-navy-950 text-[11px] font-extrabold px-2.5 py-1 rounded">FIXAÇÃO</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">NORMA DIN 933 / ISO 4017</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Aço Inox 304 vs. Zincado Branco: Quando usar cada acabamento?</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Entenda a resistência à corrosão em ambientes externos, indústrias alimentícias e estruturas metálicas pesadas.</p>
+                        <button onclick="showToast('Artigo técnico: Aço Inox 304 oferece alta resistência à oxidação em ambientes úmidos e químicos.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artigo 2 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-800 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="32" cy="32" r="24"></circle>
+                            <circle cx="32" cy="32" r="7"></circle>
+                            <path d="M32 8v8M32 48v8M8 32h8M48 32h8"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-industrial-red text-white text-[11px] font-extrabold px-2.5 py-1 rounded">ABRASIVOS</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">SEGURANÇA EM CORTE</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Como escolher o disco de corte fino ideal para aço inox e carbono</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Saiba por que discos livres de ferro, enxofre e cloro evitam a contaminação e o superaquecimento da peça.</p>
+                        <button onclick="showToast('Dica técnica: Sempre verifique o RPM máximo do disco antes de acoplar na esmerilhadeira.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Artigo 3 -->
+                <article class="bg-industrial-bg rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-navy-900 relative flex items-center justify-center p-6">
+                        <svg class="w-20 h-20 text-industrial-amber opacity-90" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M16 40c0-10 7-18 16-18s16 8 16 18H16z"></path>
+                            <path d="M12 40h40M32 16v6"></path>
+                        </svg>
+                        <span class="absolute top-3 left-3 bg-emerald-500 text-navy-950 text-[11px] font-extrabold px-2.5 py-1 rounded">SEGURANÇA NR-06</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <span class="text-xs text-slate-400 font-mono">CERTIFICADO DE APROVAÇÃO (CA)</span>
+                        <h3 class="font-bold text-navy-900 text-lg mt-1 mb-2 leading-snug">Checklist de EPIs obrigatórios para serralheria e caldeiraria</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Proteção ocular contra fagulhas, luvas de raspa e filtros respiratórios para fumos metálicos de solda.</p>
+                        <button onclick="showToast('Norma NR-06: Todos os EPIs do catálogo acompanham Certificado de Aprovação (CA) vigente.')" class="text-sm font-bold text-navy-900 hover:text-industrial-amberHover flex items-center gap-1.5 transition-colors">
+                            <span>Ler resumo técnico</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
