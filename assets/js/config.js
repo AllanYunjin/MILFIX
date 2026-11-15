@@ -22,6 +22,6 @@
         ------------------------------------------------------------------------- */
         const EMPRESA_CONFIG = {
             nome: "MILFIX",
-            whatsappVendas: "5511998765432" // <-- EDITE SEU NÚMERO DE WHATSAPP AQUI!
+            whatsappVendas: "5511994260782" // <-- EDITE SEU NÚMERO DE WHATSAPP AQUI!
         };
 
